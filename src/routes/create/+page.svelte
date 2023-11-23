@@ -53,6 +53,7 @@
         <label for="weight">Weight</label><input
           id="weight"
           type="number"
+          step="0.01"
           name="weight"
           required
         />
@@ -61,6 +62,7 @@
         <label for="length">Length</label><input
           id="length"
           type="number"
+          step="0.01"
           name="length"
           required
         />
@@ -69,6 +71,7 @@
         <label for="width">Width</label><input
           id="width"
           type="number"
+          step="0.01"
           name="width"
           required
         />
@@ -77,6 +80,7 @@
         <label for="height">Height</label><input
           id="height"
           type="number"
+          step="0.01"
           name="height"
           required
         />
