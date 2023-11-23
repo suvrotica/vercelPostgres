@@ -1,196 +1,201 @@
 <script>
-    export let form;
-    
-    let showPassword = false;
-    let showConfirm = false;
-    
-    let password = '';
-    let confirm = '';
+  export let form;
 
-    let email;
+  let showPassword = false;
+  let showConfirm = false;
 
-    $:{if(email && form?.error) email.focus()}
-    $:passError = (password?.length && confirm?.length)? (password !== confirm)? true: false : false;
+  let password = "";
+  let confirm = "";
 
+  let email;
 
+  $: {
+    if (email && form?.error) email.focus();
+  }
+  $: passError =
+    password?.length && confirm?.length
+      ? password !== confirm
+        ? true
+        : false
+      : false;
 </script>
-    
-    <h1>Create!</h1>
-    <div class="create-wrapper">
-        <div class="create-content">
-    
-    <div class='logo-wrapper'>
-        <img class="logo" src="/ConsultingNinjaSmallNoBg.png"  alt="consulting ninja logo"/>
-    </div>
 
-    
-    <form  method="post" action="?/create">
-        <div class="form-item">
-            <label for="firstname" >Firstname<sup><small>*</small></sup></label>
-            <input value={form?.firstname?? ''} id="firstname" type="text" name="firstname" required />
-        </div>
-    
-        <div class="form-item">
-          <label for="lastname" >Lastname<sup><small>*</small></sup></label>
-          <input value={form?.lastname?? ''} id="lastname" type="text" name="lastname" required />
+<h1>Create Gemstone Entry</h1>
+<div>
+  <div>
+    <form method="post" action="?/create">
+      <!-- Gemstone Details Fields -->
+      <div>
+        <label for="description">Description</label><input
+          id="description"
+          type="text"
+          name="description"
+          required
+        />
       </div>
-    
-      <div class="form-item">
-          <label for="email" >Email<sup><small>*</small></sup></label>
-          <input bind:this={email} on:keydown={()=> {form.error = false; form.message = '';}}  class:fieldError={form?.error} value={form?.email?? ''} id="email" type="email" name="email" required />
+      <div>
+        <label for="identification">Identification</label><input
+          id="identification"
+          type="text"
+          name="identification"
+          required
+        />
       </div>
-    
-        <div class="form-item">
-            <label for="password">Password<sup><small>*</small></sup></label>
-            <div class="visibility-wrapper">
-            {#if !showPassword}
-                <button class="btn-visiblity" type="button" on:click={() => showPassword = true}>
-                    <span class="material-symbols-outlined">
-                    visibility_off
-                    </span>
-                </button>
-                <input bind:value={password} class:fieldError={form?.weakPassword || passError} type='password' id="password" name="password" required />
-            {:else}
-                <button class="btn-visiblity" type="button" on:click={() => showPassword = false}>
-                    <span class="material-symbols-outlined">
-                        visibility
-                    </span>
-                </button>
-                <input bind:value={password} class:fieldError={form?.weakPassword || passError} type='text' id="password" name="password" required />
-            {/if}
-    
-            </div>  
-        </div>
-    
-        <div class="form-item">
-            <label for="confirmPassword">Confirm Password<sup><small>*</small></sup></label>
-            <div class="visibility-wrapper">
-            {#if !showConfirm}
-                <button class="btn-visiblity" type="button" on:click={() => showConfirm = true}>
-                    <span class="material-symbols-outlined">
-                    visibility_off
-                    </span>
-                </button>
-                <input bind:value={confirm} class:fieldError={form?.weakPassword || passError} type='password' id="confirmPassword" name="confirmPassword" required />
-            {:else}
-                <button class="btn-visiblity" type="button" on:click={() => showConfirm = false}>
-                    <span class="material-symbols-outlined">
-                        visibility
-                    </span>
-                </button>
-                <input bind:value={confirm} class:fieldError={form?.weakPassword || passError} type='text'  id="confirmPassword" name="confirmPassword" required />
-            {/if}
-    
-        </div>
-        </div>
+      <div>
+        <label for="origin">Origin</label><input
+          id="origin"
+          type="text"
+          name="origin"
+          required
+        />
+      </div>
+      <div>
+        <label for="weight">Weight</label><input
+          id="weight"
+          type="number"
+          name="weight"
+          required
+        />
+      </div>
+      <div>
+        <label for="length">Length</label><input
+          id="length"
+          type="number"
+          name="length"
+          required
+        />
+      </div>
+      <div>
+        <label for="width">Width</label><input
+          id="width"
+          type="number"
+          name="width"
+          required
+        />
+      </div>
+      <div>
+        <label for="height">Height</label><input
+          id="height"
+          type="number"
+          name="height"
+          required
+        />
+      </div>
+      <div>
+        <label for="cut">Cut</label><input
+          id="cut"
+          type="text"
+          name="cut"
+          required
+        />
+      </div>
+      <div>
+        <label for="shape">Shape</label><input
+          id="shape"
+          type="text"
+          name="shape"
+          required
+        />
+      </div>
+      <div>
+        <label for="color">Color</label><input
+          id="color"
+          type="text"
+          name="color"
+          required
+        />
+      </div>
+      <div>
+        <label for="additional_color">Additional Color</label><input
+          id="additional_color"
+          type="text"
+          name="additional_color"
+        />
+      </div>
+      <div>
+        <label for="comments">Comments</label><input
+          id="comments"
+          type="text"
+          name="comments"
+        />
+      </div>
 
-    
-        <div class="form-item">
-        {#if passError}
-        <small>Passwords do not match!</small>
-        {/if}
-    
-        {#if form?.error}
-        <small>{form?.message}</small>
-        {/if}
-        </div>
-    
-        <div class="form-item">
-            <button disabled={passError} type="submit" class="btn btn-primary">Sign Up</button>
-        </div>
-    
+      <!-- Gemstone Reports Fields -->
+      <div>
+        <label for="report_number">Report Number</label><input
+          id="report_number"
+          type="text"
+          name="report_number"
+          required
+        />
+      </div>
+      <div>
+        <label for="report_date">Report Date</label><input
+          id="report_date"
+          type="date"
+          name="report_date"
+          required
+        />
+      </div>
+      <div>
+        <label for="report_title">Report Title</label><input
+          id="report_title"
+          type="text"
+          name="report_title"
+          required
+        />
+      </div>
+      <div>
+        <label for="laboratory_name">Laboratory Name</label><input
+          id="laboratory_name"
+          type="text"
+          name="laboratory_name"
+          required
+        />
+      </div>
+      <div>
+        <label for="award_number">Award Number</label><input
+          id="award_number"
+          type="number"
+          name="award_number"
+          required
+        />
+      </div>
+      <div>
+        <label for="qr_code">QR Code</label><input
+          id="qr_code"
+          type="text"
+          name="qr_code"
+          required
+        />
+      </div>
+      <div>
+        <label for="signature">Signature</label><input
+          id="signature"
+          type="text"
+          name="signature"
+          required
+        />
+      </div>
+      <div>
+        <label for="barcode">Barcode</label><input
+          id="barcode"
+          type="text"
+          name="barcode"
+          required
+        />
+      </div>
+      <div>
+        <label for="report_verification_url">Report Verification URL</label
+        ><input
+          id="report_verification_url"
+          type="url"
+          name="report_verification_url"
+          required
+        />
+      </div>
+
+      <div><button type="submit">Create Entry</button></div>
     </form>
-    </div>
-    </div>
-    
-    <style>
-        div{
-            color: #FFF;
-            margin-bottom: .5em;
-            text-shadow: 0 0 2px #000000;
-        }
-        label{
-            padding-right: .5em;
-        }
-        small{
-            padding-left: .5em;
-            color: #ff0000;
-        }
-        button{
-            width: 100%;
-            background-color: #FFF;
-            transition: all 0.3s ease-in;
-        }
-        button:hover{
-            cursor: pointer;
-            text-decoration: underline;
-            color: #FFF;
-            background-color: #4d4c4c;
-            transition: all 0.3s ease-in;
-        }
-        span{
-            color: #ffffff;
-            border-radius: 115px;
-        }
-        span:hover{
-            color: rgba(255, 255, 255, 0.7);
-        }
-        input{
-            min-width: 175px;
-        }
-        .create-wrapper{
-            margin-top:2.5em;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            height: 100vh;
-            width:100%;
-            
-        }
-        .create-content{
-            max-width: 400px;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding:1em;
-            border-radius: 5px;
-        }
-        .form-item{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .fieldError{
-            outline: 2px solid #ff0000;
-        }
-        .create-wrapper{
-            height: 100vh;
-        }
-        .btn-visiblity{
-            border-radius: 9999999px;
-            background-color: rgba(0, 0, 0, 0);
-            border: 0;
-        }
-        .btn-visiblity:hover{
-            background-color: rgba(0, 0, 0, 0);
-        }
-        .visibility-wrapper{
-            display: flex;
-            flex-direction: row;
-        }
-        .logo-wrapper{
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-        .logo{
-            display: block;
-            width: 120px;
-            height: auto;
-
-        }
-
-
-
-    </style>
+  </div>
+</div>
